@@ -9,9 +9,9 @@ import LevelAuthors from "../components/List/LevelAuthors.js";
 const roleIconMap = {
     owner: "crown",
     admin: "user-gear",
-    helper: "user-shield",
+    helper: "user-gear", // Placeholder since user-shield is missing
     dev: "code",
-    trial: "user-lock",
+    trial: "user-gear", // Placeholder since user-lock is missing
 };
 
 export default {
@@ -39,7 +39,7 @@ export default {
             <div class="level-container">
                 <div class="level" v-if="level">
                     <h1>{{ level.name }}</h1>
-                    <LevelAuthors :author="level.author" :creators="level.creators" :verifier="level.verifier"></LevelAuthors>
+                    <LevelAuthors :author="level.author" :creators="level.creators || []" :verifier="level.verifier"></LevelAuthors>
                     <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
                     <ul class="stats">
                         <li>
@@ -68,7 +68,7 @@ export default {
                                 <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
                             </td>
                             <td class="mobile">
-                                <!-- Fixed: Removed leading slash -->
+                                <!-- Fixed: Removed leading slash for GitHub Pages -->
                                 <img v-if="record.mobile" :src="\`assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
                             </td>
                             <td class="hz">
@@ -93,7 +93,7 @@ export default {
                         <h3>List Editors</h3>
                         <ol class="editors">
                             <li v-for="editor in editors">
-                                <!-- Fixed: Removed leading slash -->
+                                <!-- Fixed: Removed leading slash for GitHub Pages -->
                                 <img :src="\`assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
                                 <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
                                 <p v-else>{{ editor.name }}</p>
@@ -106,12 +106,6 @@ export default {
                     </p>
                     <p>
                         Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.
                     </p>
                 </div>
             </div>
@@ -128,7 +122,6 @@ export default {
     }),
     computed: {
         level() {
-            // Safety check for list loading
             return (this.list && this.list[this.selected]) ? this.list[this.selected][0] : null;
         },
         video() {
@@ -146,7 +139,7 @@ export default {
             this.errors.push(
                 ...this.list
                     .filter(([_, err]) => err)
-                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
+                    .map(([_, err]) => \`Failed to load level. (\${err}.json)\`)
             );
         }
 
