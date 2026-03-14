@@ -71,7 +71,9 @@ export default {
                         <ol class="editors">
                             <li v-for="editor in editors">
                                 <img :src="'assets/' + roleIconMap[editor.role] + (store.dark ? '-dark' : '') + '.svg'" :alt="editor.role">
-                                <p>{{ editor.name }}</p>
+                                <!-- Fixed: Links are now clickable again -->
+                                <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
+                                <p v-else class="type-label-lg">{{ editor.name }}</p>
                             </li>
                         </ol>
                     </template>
@@ -84,12 +86,11 @@ export default {
         editors: [],
         loading: true,
         selected: 0,
-        roleIconMap, // Added this line to fix the 'owner' undefined error
+        roleIconMap,
         store
     }),
     computed: {
         level() {
-            // Corrected to access the level object inside the list array
             return (this.list && this.list[this.selected] && this.list[this.selected][0]) ? this.list[this.selected][0] : null;
         },
         video() {
