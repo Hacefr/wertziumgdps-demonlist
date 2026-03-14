@@ -11,8 +11,10 @@ export const store = Vue.reactive({
 const app = Vue.createApp({
     data: () => ({ store }),
 });
+
 const router = VueRouter.createRouter({
-    history: VueRouter.createWebHashHistory(),
+    // Adding your repository name here is the fix for the white screen
+    history: VueRouter.createWebHashHistory('/wertziumgdps-demonlist/'),
     routes,
 });
 
