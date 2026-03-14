@@ -7,11 +7,11 @@ import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
 
 const roleIconMap = {
-    owner: "crown",
-    admin: "user-gear",
-    helper: "user-gear", // Placeholder since user-shield is missing
-    dev: "code",
-    trial: "user-gear", // Placeholder since user-lock is missing
+    owner: "crown.svg",
+    admin: "user-gear.svg",
+    helper: "user-gear.svg", // Placeholder since user-shield is missing
+    dev: "code.svg",
+    trial: "user-gear.svg", // Placeholder since user-lock is missing
 };
 
 export default {
