@@ -4,7 +4,7 @@ import { round, score } from './score.js';
  * Path to directory containing `_list.json` and all levels
  * Removed the leading slash to make it relative to your folder
  */
-const dir = 'data';
+const dir = '/data';
 
 export async function fetchList() {
     // Relative fetch: looks inside your project folder
