@@ -1,0 +1,18 @@
+{
+    "id": 192,
+    "name": "effortland",
+    "author": "Wora",
+    "creators": ["Wora"],
+    "verifier": "Wora",
+    "verification": "https://www.youtube.com/watch?v=TdME_i25kyQ",
+    "percentToQualify": 30,
+    "password": "Free copy",
+    "records": [
+        {
+            "user": "Wora",
+            "link": "https://www.youtube.com/watch?v=TdME_i25kyQ",
+            "percent": 100,
+            "hz": 120
+        }
+    ]
+}
